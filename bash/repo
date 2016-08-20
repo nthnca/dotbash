@@ -1,26 +1,23 @@
-alias repopull='{ cd $DOTBASH/..; ls | xargs -P 10 -I{} git -C {} pull; }; '
-alias repopush='{ cd $DOTBASH/..; ls | xargs -I{} git -C {} push; }; '
-alias repostatus='{ cd $DOTBASH/..; repo "status -s"; }'
-alias repolog='{ cd $DOTBASH/..; repo "log origin/master.."; }'
+alias rpull='{ cd $DOTBASH/..; ls | xargs -P 10 -I{} git -C {} pull; }; '
+alias rpush='{ cd $DOTBASH/..; ls | xargs -I{} git -C {} push; }; '
 
-repo ()
+rst ()
 {
-if [ $# -ne 1 ]; then
-  echo "repo [status|pull]"
-  return 1
-fi
+  cd $DOTBASH/..
+  ls | xargs -P 10 -I{} git -C {} fetch
 
-COLOR='\033[0;34m'
-NO_COLOR='\033[0m'
+  local COLOR='\033[0;34m'
+  local NO_COLOR='\033[0m'
 
-for x in *; do
-  if [ -d $x ]; then
-    echo
-    echo -e "${COLOR}Pulling ${x}...\033[0m"
-    cd $x
-    git $1
-    cd ..
-    echo
-  fi
-done
+  for dir in *; do
+    if [ -d "$dir" ]; then
+      echo -e "${COLOR}${dir}...\033[0m"
+      cd "$dir"
+      git status -sb
+      echo
+      git log origin/master..
+      echo
+      cd ..
+    fi
+  done
 }
