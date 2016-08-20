@@ -50,24 +50,30 @@ __other_dir() {
     __undo_context=true
 }
 
+__count() {
+  echo $#
+}
+
 __prompt_command() {
-  if [ $? -eq 0 ]; then
-    __pr_error="[$SHORT_NAME-$DEPTH] "
-  else
-    __pr_error="[ERR-$?] "
-  fi
+  __pr_error="-ERR$?"
+  [ $__pr_error == "-ERR0" ] && __pr_error=""
 
   $__undo_context
   __git_dir || __other_dir  # add more as needed
 
-  if [ ! -z "$__pr_branch" ]; then
-    __pr_branch="[$__pr_branch]"
-  fi
+
+  __pr_jobs="-j$(__count `jobs -p`)"
+  [ "$__pr_jobs" == "-j0" ] && __pr_jobs=""
+
+  __pr_depth="-d$DEPTH"
+  [ "$__pr_depth" == "-d1" ] && __pr_depth=""
+
+  [ -n "$__pr_branch" ] && __pr_branch="[$__pr_branch]"
 }
 
 PROMPT_COMMAND=__prompt_command
 
-# PS1 should look something like "[ERR1-] g4146[branch]/foo/abc$
-PS1='\[\e[31m\]$__pr_error\[\e[0m\]$__pr_repo\[\e[34m\]$__pr_branch\[\e[0m\]$__pr_dir$ '
+# PS1 should look something like "[UNK-d6-j3-ERR1] g4146[branch]/foo/abc$
+PS1='[\[\e[34m\]$SHORT_NAME\[\e[0m\]\[\e[31m\]$__pr_depth$__pr_jobs$__pr_error\[\e[0m\]] $__pr_repo\[\e[34m\]$__pr_branch\[\e[0m\]$__pr_dir$ '
 
 # vim: set ft=sh:
