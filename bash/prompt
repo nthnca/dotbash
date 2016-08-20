@@ -4,7 +4,7 @@
 # undo aliases of previous context
 # set up new context sensitive aliases
 __git_undo() {
-    unalias br co ci st dif show push pull
+    unalias br co ci st dif show push pull cid
 }
 
 __git_do() {
@@ -22,6 +22,7 @@ __git_do() {
     alias co="git checkout"
     alias ci="git commit -v -a"
     alias cia="git commit --amend -v -a"
+    alias cid="GIT_COMMITTER_DATE=\"$FAKE_DATE\" git commit -v -a --date=\"$FAKE_DATE\""
     alias st="git status"
     alias log="git log"
     alias dif="git diff -p"
