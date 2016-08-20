@@ -14,5 +14,3 @@ export HISTSIZE=50000
 export HISTCONTROL=erasedups
 shopt -s histappend
 export HISTIGNORE="exit:clear:reset"
-
-# vim: set ft=sh:

@@ -90,5 +90,3 @@ PROMPT_COMMAND=__prompt_command
 
 # PS1 should look something like "[UNK-d6-j3-ERR1] g4146[branch]/foo/abc$
 PS1='[\[\e[34m\]$SHORT_NAME\[\e[0m\]\[\e[31m\]$__pr_depth$__pr_jobs$__pr_error\[\e[0m\]] $__pr_repo\[\e[34m\]$__pr_branch\[\e[0m\]$__pr_dir$ '
-
-# vim: set ft=sh:
