@@ -15,7 +15,7 @@ alias rsync='rsync --stats -rvt' # -r recurse, -v verbose, -t preserve time
 [ -n "$MACOSX" ] && alias ls='ls -GBh'
 [ -n "$LINUX" ] && alias ls='ls --color=tty -Bh'
 
-[ -n "$MACOSX" ] && SSH_AUTH_SOCK=
+# [ -n "$MACOSX" ] && SSH_AUTH_SOCK=
 
 alias white="echo;echo;echo;echo;echo;echo;echo"
 diffk() {
