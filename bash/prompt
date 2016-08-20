@@ -22,7 +22,7 @@ __git_do() {
     alias co="git checkout"
     alias ci="git commit -v -a"
     alias cia="git commit --amend -v -a"
-    alias cid="GIT_COMMITTER_DATE=\"$FAKE_DATE\" git commit -v -a --date=\"$FAKE_DATE\""
+    alias cid="GIT_COMMITTER_DATE=\"$FAKE_DATE\" git commit -v --date=\"$FAKE_DATE\""
     alias st="git status"
     alias log="git log"
     alias dif="git diff -p"
@@ -54,13 +54,28 @@ __count() {
   echo $#
 }
 
+__stayawake_time=0
+
+__stayawake () {
+  if [ -z $LINUX ]; then
+    return 1
+  fi
+
+  local time=$(printf "%(%s)T")
+  if [ $__stayawake_time -lt $((time-120)) ]; then
+    __stayawake_time=$time
+    $DOTBASH/bin/stayawake
+  fi
+  return 1
+}
+
 __prompt_command() {
   __pr_error="-ERR$?"
   [ $__pr_error == "-ERR0" ] && __pr_error=""
 
   $__undo_context
   __git_dir || __other_dir  # add more as needed
-
+  __stayawake
 
   __pr_jobs="-j$(__count `jobs -p`)"
   [ "$__pr_jobs" == "-j0" ] && __pr_jobs=""
