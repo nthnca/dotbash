@@ -6,8 +6,12 @@ for user in $CHROME_USERS; do
     {
       # Daemonize the process
       {
-        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
-            --user-data-dir=$HOME/.${user}chrome >/dev/null 2>&1 &
+        if [ -n $MACOSX ]; then
+          EXE="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+        else
+          EXE="/usr/bin/google-chrome"
+        fi
+        "$EXE" --user-data-dir=$HOME/.${user}chrome >/dev/null 2>&1 &
       } &
     }
 EOF
