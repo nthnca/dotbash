@@ -1,10 +1,10 @@
 # helpful options for everyday commands
 alias whoami="echo `/usr/bin/whoami`@`uname -n`"
-alias rm='rm -i'
 
 alias vi='vim'
 alias cd='cd -P'
 alias df='df -h'
+alias rm='rm -i'
 
 alias srun='screen -D -RR -S a'
 alias slist='screen -list'
@@ -15,16 +15,4 @@ alias rsync='rsync --stats -rvt' # -r recurse, -v verbose, -t preserve time
 [ -n "$MACOSX" ] && alias ls='ls -GBh'
 [ -n "$LINUX" ] && alias ls='ls --color=tty -Bh'
 
-# [ -n "$MACOSX" ] && SSH_AUTH_SOCK=
-
 alias white="echo;echo;echo;echo;echo;echo;echo"
-diffk() {
-    git diff -U99 $1^..$1 | kompare -o -
-}
-
-#alias pub-gpg="gpg --homedir /home/nathan/x/Stream/keys/"
-
-#alias encrypt="pub-gpg --encrypt --recipient 'Nathan Bullock'"
-#decrypt() {
-#    priv-gpg --decrypt -o $1 $1.gpg
-#}
