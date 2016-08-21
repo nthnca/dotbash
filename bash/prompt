@@ -1,0 +1,72 @@
+## Context sensitive aliases
+# make all function variables local
+# try not to run any non-native bash cmds... this has to execute a lot
+# undo aliases of previous context
+# set up new context sensitive aliases
+__git_undo() {
+    unalias br co ci st dif show push pull
+}
+
+__git_do() {
+    local git_br
+
+    read git_br < $1/.git/HEAD
+    __pr_branch=${git_br##*refs/heads/}
+    [ "$git_br" == "$__pr_branch" ] && __pr_branch="(no branch)"
+
+    __pr_repo="${1##*/}"
+    __pr_dir="${PWD##$1}"
+    __undo_context=__git_undo
+
+    alias br="git branch"
+    alias co="git checkout"
+    alias ci="git commit -v -a"
+    alias cia="git commit --amend -v -a"
+    alias st="git status"
+    alias log="git log"
+    alias dif="git diff -p"
+    alias show="git show"
+    alias push="git push origin :"
+    alias pull="git fetch; git merge origin/$__pr_branch"
+}
+
+__git_dir() {
+    local tmppath
+
+    tmppath=$PWD
+    while [ "$tmppath" != "" ]; do
+        [ -d "$tmppath"/.git ] && __git_do "$tmppath" && return 0
+        [ "${tmppath##*/}" == .git ] && return 1
+        tmppath=${tmppath%/*}
+    done
+    return 1
+}
+
+__other_dir() {
+    __pr_repo=
+    __pr_branch=
+    __pr_dir="${PWD/$HOME\//~/}"
+    __undo_context=true
+}
+
+__prompt_command() {
+  if [ $? -eq 0 ]; then
+    __pr_error="[$SHORT_NAME-$DEPTH]"
+  else
+    __pr_error="[ERR-$?] "
+  fi
+
+  $__undo_context
+  __git_dir || __other_dir  # add more as needed
+
+  if [ ! -z "$__pr_branch" ]; then
+    __pr_branch="[$__pr_branch]"
+  fi
+}
+
+PROMPT_COMMAND=__prompt_command
+
+# PS1 should look something like "[ERR1-] g4146[branch]/foo/abc$
+PS1='\[\e[31m\]$__pr_error\[\e[0m\]$__pr_repo\[\e[34m\]$__pr_branch\[\e[0m\]$__pr_dir$ '
+
+# vim: set ft=sh:
