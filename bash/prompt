@@ -51,7 +51,7 @@ __other_dir() {
 
 __prompt_command() {
   if [ $? -eq 0 ]; then
-    __pr_error="[$SHORT_NAME-$DEPTH]"
+    __pr_error="[$SHORT_NAME-$DEPTH] "
   else
     __pr_error="[ERR-$?] "
   fi
