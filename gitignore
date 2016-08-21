@@ -1,0 +1,2 @@
+# Install with git config --global core.excludesfile ~/github/gitignore
+.DS_Store
