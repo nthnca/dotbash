@@ -1,0 +1,20 @@
+TMP_FILE=$(mktemp)
+
+for user in $CHROME_USERS; do
+  cat <<- EOF >> "$TMP_FILE"
+    start${user}chrome ()
+    {
+      # Daemonize the process
+      {
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+            --user-data-dir=$HOME/.${user}chrome >/dev/null 2>&1 &
+      } &
+    }
+EOF
+done
+
+. "$TMP_FILE"
+
+rm -f "$TMP_FILE"
+
+unset TMP_FILE

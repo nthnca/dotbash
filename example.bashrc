@@ -7,6 +7,7 @@
 # The following variables need to be localized for your system.
 DOTBASH="$HOME/github/dotbash/"
 SHORT_NAME="UNK"
+CHROME_USERS="my work other"
 
 # Don't modify the next line, make sure DOTBASH is defined correctly.
 . "$DOTBASH/core.bashrc"
