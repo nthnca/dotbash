@@ -25,7 +25,7 @@ __repo_status () {
   for dir in $(__repo_ls); do
     [ -d "$dir" ] || continue
 
-    echo -e "${COLOR}${dir}...\033[0m"
+    echo -e "${COLOR}$(cd "$dir"; pwd)...\033[0m"
     git -C "$dir" status -sb
     echo
     git -C "$dir" config --get remote.origin.url >/dev/null && \
