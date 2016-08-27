@@ -9,18 +9,10 @@ __startchrome () {
     local EXE="/usr/bin/google-chrome"
   fi
 
-  { "$EXE" --user-data-dir=$HOME/.${1}chrome >/dev/null 2>&1 & } &
+  ( "$EXE" --user-data-dir=$HOME/.${1}chrome >/dev/null 2>&1 & ) &
 }
-
-TMP_FILE=$(mktemp)
 
 for user in $CHROME_USERS; do
   # Daemonize the process.
-  cat << EOF >> "$TMP_FILE"
-    alias start${user}chrome="__startchrome ${user}"
-EOF
+  eval "alias start${user}chrome='__startchrome ${user}'"
 done
-
-. "$TMP_FILE"
-rm -f "$TMP_FILE"
-unset TMP_FILE

@@ -1,6 +1,5 @@
 # Add each repository that has a bin directory to the PATH.
 for dir in "${DOTBASH}"/../*/bin; do
-  if [ -d "$dir" ]; then
-    PATH="$PATH:`cd "${dir}";pwd`"
-  fi
+  [ -d "$dir" ] || continue
+  PATH="$PATH:$(cd "${dir}";pwd)"
 done
