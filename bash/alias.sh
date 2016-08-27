@@ -10,7 +10,7 @@ alias rm='rm -i'
 alias srun='screen -D -RR -S a'
 alias slist='screen -list'
 
-alias rsync='rsync --stats -rvt' # -r recurse, -v verbose, -t preserve time
+#alias rsync='rsync --stats' # -r recurse, -v verbose, -t preserve time
   # may need --modify-window=1 if rsyncing with FAT fs
 
 alias white="echo;echo;echo;echo;echo;echo;echo"
