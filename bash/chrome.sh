@@ -9,7 +9,7 @@ __startchrome () {
     local EXE="/usr/bin/google-chrome"
   fi
 
-  { "$TMP_EXE" --user-data-dir=$HOME/.${1}chrome >/dev/null 2>&1 & } &
+  { "$EXE" --user-data-dir=$HOME/.${1}chrome >/dev/null 2>&1 & } &
 }
 
 TMP_FILE=$(mktemp)
