@@ -1,9 +1,6 @@
-alias rpull='{ cd $DOTBASH/..; ls | xargs -P 10 -I{} git -C {} pull; }; '
-alias rpush='{ cd $DOTBASH/..; ls | xargs -I{} git -C {} push; }; '
+# Repository commands.
 
-rst ()
-{
-  cd $DOTBASH/..
+__repo_status () {
   ls | xargs -P 10 -I{} git -C {} fetch
 
   local COLOR='\033[0;34m'
@@ -21,3 +18,6 @@ rst ()
     fi
   done
 }
+alias rpull='( cd $DOTBASH/..; ls | xargs -P 10 -I{} git -C {} pull; );'
+alias rpush='( cd $DOTBASH/..; ls | xargs -I{} git -C {} push; );'
+alias rst='( cd $DOTBASH/..; __repo_status; );'

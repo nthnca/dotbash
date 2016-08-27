@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# When I am just ssh'ed into a machine, they will still fall asleep, running
+# this periodically simulated user activity and will keep things awake.
+
 export DISPLAY=:0.0
 
 dbus-send --session --dest=org.gnome.ScreenSaver --type=method_call \

@@ -1,18 +1,13 @@
-# DOTBASH should already be set prior to loading this file.
+# vim: set ft=sh:
 
-# git needs its path, even in non-interactive shells.
-tmp="/usr/local/git/bin"
-if [ -d "$tmp" ]; then
-  PATH="$PATH:$tmp"
-fi
+# What type of system are we running on?
+[ -d /etc/mach_init.d ] && MACOSX=1
+[ -f /etc/lsb-release ] && LINUX=1
 
-# If not running interactively, time to exit.
+# If this isn't an interactive shell now is the time to bail.
 [ -z "$PS1" ] && return
 
-export DEPTH=$((DEPTH + 1))
-
+# DOTBASH should already be set prior to loading this file.
 for file in $DOTBASH/bash/*; do
   . $file
 done
-
-# vim: set ft=sh:

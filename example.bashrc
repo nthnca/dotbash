@@ -1,16 +1,20 @@
+# vim: set ft=sh:
+
+# In order to install this bashrc file:
 # cp example.bashrc ~/.bashrc; ln ~/.bashrc ~/.bash_profile
 
-# What type of system are we running on?
-[ -d /etc/mach_init.d ] && MACOSX=1
-[ ! -d /etc/mach_init.d ] && LINUX=1
-
-# The following variables need to be localized for your system.
+# DOTBASH is the path to the dotbash repository.
 DOTBASH="$HOME/github/dotbash/"
+
+# Nice short name for this computer.
 SHORT_NAME="UNK"
+
+# Multiple Chrome profiles? Add them here, creates commands like startXchrome.
 CHROME_USERS="prof1 prof2 prof3"
+
+# If you want to use fake date for git commits, use 'cid' command.
 FAKE_DATE="Sat Aug 20 9:00:00 EDT 2016"
+
 
 # Don't modify the next line, make sure DOTBASH is defined correctly.
 . "$DOTBASH/core.bashrc"
-
-# vim: set ft=sh:

@@ -1,23 +1,26 @@
+# Make it simple to use multiple chrome profiles.
+# Generate a start*chrome alias for each entry in CHROME_USERS.
+
+__startchrome () {
+  # Daemonize the process
+  if [ -n $MACOSX ]; then
+    local EXE="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+  else
+    local EXE="/usr/bin/google-chrome"
+  fi
+
+  { "$TMP_EXE" --user-data-dir=$HOME/.${1}chrome >/dev/null 2>&1 & } &
+}
+
 TMP_FILE=$(mktemp)
-if [ -n $MACOSX ]; then
-  TMP_EXE="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-else
-  TMP_EXE="/usr/bin/google-chrome"
-fi
 
 for user in $CHROME_USERS; do
-  cat <<- EOF >> "$TMP_FILE"
-    start${user}chrome ()
-    {
-      # Daemonize the process
-      { "$TMP_EXE" --user-data-dir=$HOME/.${user}chrome >/dev/null 2>&1 & } &
-    }
+  # Daemonize the process.
+  cat << EOF >> "$TMP_FILE"
+    alias start${user}chrome="__startchrome ${user}"
 EOF
 done
 
 . "$TMP_FILE"
-
 rm -f "$TMP_FILE"
-
 unset TMP_FILE
-unset TMP_EXE

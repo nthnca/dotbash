@@ -50,7 +50,9 @@ __other_dir() {
     __undo_context=true
 }
 
-__count() {
+export DEPTH=$((DEPTH + 1))
+
+__count_arguments() {
   echo $#
 }
 
@@ -77,7 +79,7 @@ __prompt_command() {
   __git_dir || __other_dir  # add more as needed
   __stayawake
 
-  __pr_jobs="-j$(__count `jobs -p`)"
+  __pr_jobs="-j$(__count_arguments `jobs -p`)"
   [ "$__pr_jobs" == "-j0" ] && __pr_jobs=""
 
   __pr_depth="-d$DEPTH"
