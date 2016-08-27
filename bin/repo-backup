@@ -1,0 +1,35 @@
+#!/bin/bash
+
+EXE="$0"
+
+usage() {
+  echo "USAGE: $EXE REPOSITORY VERSION"
+  [ $# -lt 1 ] && exit 0
+  echo "$1"; exit 1
+}
+
+[ $# -ne 2 ] && usage "Incorrect number or arguments"
+
+REPO="$1"
+VERSION="$2"
+
+[ -d "$REPO" ] || usage "$REPO is not a directory"
+[ -d "${REPO}/.git" ] || usage "This is not a git repository"
+REPO_NAME="$(cd "$REPO"; basename $PWD)"
+
+RE="^[0-9]+$"
+[[ ! $VERSION =~ $RE ]] && usage "$VERSION isn't a number"
+
+echo -n "Commiting empty commit: "
+git -C "$REPO" commit --allow-empty -m "Version $VERSION"
+git -C "$REPO" gc 2>/dev/null
+
+HASH=$(git -C "$REPO" rev-parse HEAD)
+PREFIX=${HASH:0:8}
+
+# Should already be set to track backup branch: git branch -u backup
+git -C "$REPO" branch -f backup HEAD
+
+ARCHIVE="${REPO_NAME}.v${VERSION}.${PREFIX}.tgz"
+echo "Creating backup: $ARCHIVE"
+tar -C ${REPO} --transform 's,^.git,GIT,S' -czf "$ARCHIVE" .git
