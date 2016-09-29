@@ -3,7 +3,7 @@
 
 __startchrome () {
   # Daemonize the process
-  if [ -n $MACOSX ]; then
+  if [ -n "$MACOSX" ]; then
     local EXE="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
   else
     local EXE="/usr/bin/google-chrome"
