@@ -1,8 +1,16 @@
 # Repository commands.
 
+if [ -z "${REPO_PATHS}" ]; then
+  export REPO_PATHS=${DOTBASH}/..
+fi
+
+__dir_ls() {
+  find $* -maxdepth 1 -mindepth 1 -type d
+}
+
 # List all the git repos in $DOTBASH/..
 __repo_ls () {
-  for dir in ${DOTBASH}/../*; do
+  for dir in $(__dir_ls $REPO_PATHS); do
     [ -d "$dir"/.git ] || continue
     echo "$dir"
   done
@@ -17,7 +25,13 @@ __repo_ls_remote () {
 }
 
 __repo_status () {
-  __repo_ls_remote | xargs -P 10 -I{} git -C {} fetch
+  for x in $(__repo_ls_remote); do
+    echo "$x"
+    git -C "$x" fetch &
+  done
+
+  wait
+  echo "All repositories have been synced."
 
   local COLOR='\033[0;34m'
   local NO_COLOR='\033[0m'
