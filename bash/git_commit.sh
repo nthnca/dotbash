@@ -5,10 +5,13 @@ _git_commit_date() {
   local last_date=$(date -d "$(git log -1 --pretty="%ai" 2>/dev/null)" +%s)
   local curr_date=$(date +%s)
 
-  # Are we within one week?
-  if [ $((last_date + $one_week)) -gt $curr_date ]; then
-    echo $((last_date+1))
-    return
+  # May be an empty git repo, in which case $last_date is bogus.
+  if git rev-parse HEAD 2>/dev/null >/dev/null; then
+    # Are we within one week?
+    if [ $((last_date + $one_week)) -gt $curr_date ]; then
+      echo $((last_date+1))
+      return
+    fi
   fi
 
   echo $((curr_date - $((curr_date % $one_week))))
