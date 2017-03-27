@@ -16,8 +16,8 @@ CHROME_USERS="prof1 prof2 prof3"
 export GOPATH=$HOME/Library/go:$HOME/go
 
 # Feels like this should go somewhere else...
-export PATH=$PATH:/home/nathan/go/bin
-export PATH=$PATH:/home/nathan/Library/go/bin
+export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$HOME/Library/go/bin
 
 
 # Don't modify the next line, make sure DOTBASH is defined correctly.
