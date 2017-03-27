@@ -12,8 +12,8 @@ SHORT_NAME="UNK"
 # Multiple Chrome profiles? Add them here, creates commands like startXchrome.
 CHROME_USERS="prof1 prof2 prof3"
 
-# If you want to use fake date for git commits, use 'cid' command.
-FAKE_DATE="Sat Aug 20 9:00:00 EDT 2016"
+# Feels like this should go somewhere else...
+export GOPATH=$HOME/Library/go:$HOME/go
 
 
 # Don't modify the next line, make sure DOTBASH is defined correctly.
