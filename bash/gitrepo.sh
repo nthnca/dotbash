@@ -41,5 +41,5 @@ alias rls='ls $DOTBASH/..'
 
 # Set up aliases for all repositories.
 for dir in $(__repo_ls); do
-  eval "alias $(basename $dir)='cd $(cd $dir; pwd)'"
+  eval "alias c$(basename $dir)='cd $(cd $dir; pwd)'"
 done
