@@ -1,0 +1,24 @@
+#!/bin/bash
+
+DIR=$PWD
+while [ ! -z $DIR ]; do
+  if [ -f $DIR/rootinfo ]; then
+    break
+  fi
+  DIR=${DIR%/*}
+done
+
+. $DIR/rootinfo
+
+for addr in $(echo "$INCLUDE" | tr ":" "\n"); do
+  TMP=$DIR/$addr
+  if [ "${TMP#$PWD}" == "$TMP" -a "${PWD#$TMP}" == "$PWD" ]; then
+    continue
+  fi
+
+  if [ "${TMP#$PWD}" == "$TMP" ]; then
+    TMP=$PWD
+  fi
+
+  find $TMP -type $1 | grep -v $IGNORE
+done
