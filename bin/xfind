@@ -1,17 +1,11 @@
 #!/bin/bash
 
-DIR=$PWD
-while [ ! -z $DIR ]; do
-  if [ -f $DIR/rootinfo ]; then
-    break
-  fi
-  DIR=${DIR%/*}
-done
+DIR=$(xroot)
 
 . $DIR/rootinfo
 
 for addr in $(echo "$INCLUDE" | tr ":" "\n"); do
-  TMP=$DIR/$addr
+  TMP=$(readlink -f $DIR/$addr)
   if [ "${TMP#$PWD}" == "$TMP" -a "${PWD#$TMP}" == "$PWD" ]; then
     continue
   fi
@@ -20,5 +14,5 @@ for addr in $(echo "$INCLUDE" | tr ":" "\n"); do
     TMP=$PWD
   fi
 
-  find $TMP -type $1 | grep -v $IGNORE
+  find $TMP -type f | cut -b $((${#DIR}+2))- | egrep -v $IGNORE
 done

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+DIR=$(xroot)
+
+xfind f | (cd $DIR; ack -x --nogroup $1) | tee $DIR/res

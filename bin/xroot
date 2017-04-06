@@ -1,0 +1,16 @@
+#!/bin/bash
+
+DIR="$PWD"
+while [ ! -z "$DIR" ]; do
+  if [ -f "$DIR/rootinfo" ]; then
+    break
+  fi
+  DIR="${DIR%/*}"
+done
+
+if [ -z "$DIR" ]; then
+  echo "No subdirectory contains 'rootinfo'" >&2
+  exit 1
+fi
+
+echo "$DIR"
