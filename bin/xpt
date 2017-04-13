@@ -1,0 +1,14 @@
+#!/bin/bash
+
+DIR=$(xroot)
+PRE=${PWD#$DIR/}
+
+if [ "$PWD" == "$PRE" ]; then
+  CNT=1
+  PRE=
+else
+  CNT=$((${#PRE}+2))
+  PRE=$(echo $PRE/ | sed 's/\//\\\//g')
+fi
+
+pt --nogroup $* $(xcommon) | sed "s/^/$PRE/" | tee $DIR/res | cut -b $CNT-

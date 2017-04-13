@@ -1,18 +1,3 @@
 #!/bin/bash
 
-DIR=$(xroot)
-
-. $DIR/rootinfo
-
-for addr in $(echo "$INCLUDE" | tr ":" "\n"); do
-  TMP=$(readlink -f $DIR/$addr)
-  if [ "${TMP#$PWD}" == "$TMP" -a "${PWD#$TMP}" == "$PWD" ]; then
-    continue
-  fi
-
-  if [ "${TMP#$PWD}" == "$TMP" ]; then
-    TMP=$PWD
-  fi
-
-  find $TMP -type f | cut -b $((${#DIR}+2))- | egrep -v $IGNORE
-done
+xpt --files-with-matches .
