@@ -30,7 +30,7 @@ __pr_prompt_command() {
 
   REPO_NAME=
   BRANCH_NAME=
-  BRANCH_PATH="${PWD/$HOME\//~/}"
+  BRANCH_PATH="${PWD/$HOME\//\~/}"
 
   local IFS=':'
   for cmd in $PROMPT_COMMANDS; do
@@ -43,5 +43,6 @@ __pr_prompt_command() {
   __pr_depth="-d$DEPTH"
   [ "$__pr_depth" == "-d1" ] && __pr_depth=""
 
+  __pr_branch=""
   [ -n "$BRANCH_NAME" ] && __pr_branch="[$BRANCH_NAME]"
 }
