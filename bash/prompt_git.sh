@@ -23,7 +23,6 @@ __git_do() {
 
     REPO_NAME="${1##*/}"
     BRANCH_PATH="${PWD##$1}"
-    __undo_context=__git_undo
     __git_undo_true=true
 
     alias br="git branch"
@@ -43,9 +42,9 @@ __git_dir() {
 
     tmppath=$PWD
     while [ "$tmppath" != "" ]; do
-        [ -d "$tmppath"/.git ] && __git_do "$tmppath" && return 0
-        [ "${tmppath##*/}" == .git ] && return 1
+        [ -d "$tmppath"/.git ] && __git_do "$tmppath" && return 1
+        [ "${tmppath##*/}" == .git ] && return 0
         tmppath=${tmppath%/*}
     done
-    return 1
+    return 0
 }
