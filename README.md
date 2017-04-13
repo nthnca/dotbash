@@ -41,8 +41,8 @@ in addition to the git support.
 
 # Quick customization
 
-eal - open a window to edit your bash aliases.
-xal - reload your bash aliases
+- eal - open a window to edit your bash aliases.
+- xal - reload your bash aliases
 
 
 # Good defaults
