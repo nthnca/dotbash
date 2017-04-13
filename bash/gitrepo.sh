@@ -39,6 +39,11 @@ __repo_status () {
   for dir in $(__repo_ls); do
     [ -d "$dir" ] || continue
 
+    (cd "$dir"; git log origin/master.. 2>/dev/null;
+                git log HEAD..origin/master 2>/dev/null;
+                git status --porcelain) | grep . >/dev/null
+    [ $? -ne 0 ] && continue
+
     echo -e "${COLOR}$(cd "$dir"; pwd)...\033[0m"
     git -C "$dir" status -sb
     echo
