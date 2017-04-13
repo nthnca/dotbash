@@ -1,8 +1,6 @@
 # Want this to run on every new prompt.
-PROMPT_COMMANDS=__git_undo:$PROMPT_COMMANDS
-
 # Want this to run until one prompt command returns an error.
-PROMPT_COMMANDS=$PROMPT_COMMANDS:__git_dir
+PROMPT_COMMANDS=__git_undo:$PROMPT_COMMANDS:__git_dir
 
 ## Context sensitive aliases
 # make all function variables local

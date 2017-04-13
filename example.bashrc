@@ -7,12 +7,9 @@
 DOTBASH="$HOME/github/dotbash/"
 
 # Nice short name for this computer.
-SHORT_NAME="UNK"
+SHORT_NAME="UNKNOWN"
 
-# Multiple Chrome profiles? Add them here, creates commands like startXchrome.
-CHROME_USERS="prof1 prof2 prof3"
-
-# Multiple Chrome profiles? Add them here, creates commands like startXchrome.
+# Multiple Chrome profiles? Add here, creates commands like startprof1chrome.
 CHROME_USERS="prof1 prof2 prof3"
 
 # If you have multiple repositories. Tools like rst use this.

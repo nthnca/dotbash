@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # When I am just ssh'ed into a machine, they will still fall asleep, running
-# this periodically simulated user activity and will keep things awake.
+# this periodically simulates user activity and will keep things awake.
 
 # Don't run this on machines that don't have X installed.
-which X >/dev/null                                                              
-if [ $? -ne 0 ]; then                                                           
-  exit 0                                                                        
+which X >/dev/null
+if [ $? -ne 0 ]; then
+  exit 0
 fi
 
 export DISPLAY=:0.0
