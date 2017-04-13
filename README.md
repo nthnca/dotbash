@@ -10,6 +10,7 @@ own uses if you so wish.
 - 'git clone https://github.com/nathanbullock/dotbash.git'
 - 'cp dotbash/example.bashrc ~/.bashrc'
 - 'ln ~/.bashrc ~/.bash_profile'
+- 'ln ~/.tmux.conf dotbash/tmux.conf'
 
 At this point open .bashrc and tweak any variables referred to there.
 
