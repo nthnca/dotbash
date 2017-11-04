@@ -7,10 +7,11 @@ own uses if you so wish.
 
 ## Install
 
-- 'git clone https://github.com/nthnca/dotbash.git'
-- 'cp dotbash/example.bashrc ~/.bashrc'
-- 'ln ~/.bashrc ~/.bash_profile'
-- 'ln dotbash/tmux.conf ~/.tmux.conf'
+- `mkdir github; cd github`
+- `git clone https://github.com/nthnca/dotbash.git`
+- `cp $PWD/dotbash/example.bashrc ~/.bashrc1`
+- `ln ~/.bashrc ~/.bash_profile`
+- `ln $PWD/dotbash/tmux.conf ~/.tmux.conf`
 
 At this point open .bashrc and tweak any variables referred to there.
 
