@@ -54,6 +54,30 @@ in addition to the git support.
 Useful defaults for cd, df, rm, and ls commands.
 
 
+### Multiple chrome profiles
+
+If you want multiple chrome profiles (for example one for work and on for your
+personal account) in your bashrc set:
+
+```shell
+CHROME_USERS="work personal"
+```
+
+This will give you a startworkchrome and a startpersonalchrome command to open
+a chrome window for two different profiles.
+
+
+### git repos
+
+When you set the REPO_PATHS environment variable to the set of directories that
+contain your git repositories, the following commands will work:
+
+- rls: Lists all of your git repositories
+- rst: Fetches and gets a basic status for each
+- rpull: Does a pull for each
+- rpush: Does a push for each
+
+
 ### And more
 
 There are numerous other features such as scrambling your git commit
