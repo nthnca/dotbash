@@ -1,0 +1,3 @@
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+0-59/5 * * * *   root    test `cut -d . -f 1 /proc/uptime` -gt 1000 && touch -d "$(date --date="-30 minutes")" /tmp/stayawake.oldest && ! ( find /tmp/stayawake.* -newer /tmp/stayawake.oldest | grep . >/dev/null ) && shutdown -h now
