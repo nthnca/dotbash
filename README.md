@@ -8,7 +8,7 @@ own uses if you so wish.
 ## Install
 
 ```shell
-mkdir github; cd github
+mkdir -p github; cd github
 git clone https://github.com/nthnca/dotbash.git
 cp $PWD/dotbash/example.bashrc ~/.bashrc1
 ln ~/.bashrc ~/.bash_profile
@@ -19,7 +19,7 @@ At this point open .bashrc and tweak any variables referred to there.
 
 ## Features
 
-# Insanely useful prompt
+### Insanely useful prompt
 
 Normally it will look something like (the prompts also have color):
 
@@ -43,18 +43,18 @@ It is also relatively easy to add support for other types of repositories
 in addition to the git support.
 
 
-# Quick customization
+### Quick customization
 
 - eal - open a window to edit your bash aliases.
 - xal - reload your bash aliases
 
 
-# Good defaults
+### Good defaults
 
 Useful defaults for cd, df, rm, and ls commands.
 
 
-# And more
+### And more
 
 There are numerous other features such as scrambling your git commit
 timestamps, localized git shortcuts, aliases for cd'ing to your repositories,
