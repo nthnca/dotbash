@@ -10,7 +10,7 @@ own uses if you so wish.
 ```shell
 mkdir -p github; cd github
 git clone https://github.com/nthnca/dotbash.git
-cp $PWD/dotbash/example.bashrc ~/.bashrc1
+cp $PWD/dotbash/example.bashrc ~/.bashrc
 ln ~/.bashrc ~/.bash_profile
 ln $PWD/dotbash/tmux.conf ~/.tmux.conf
 ```
