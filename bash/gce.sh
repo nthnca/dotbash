@@ -2,7 +2,7 @@
 export GCE_DEFAULT_ZONE=us-west1-c
 
 function gcestart() {
-  if [ 0 -ne 1 ]; then
+  if [ $# -ne 1 ]; then
     echo "Usage: gcestart <vmname>"
     return
   fi
