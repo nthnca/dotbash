@@ -7,7 +7,7 @@ function gcestart() {
     return
   fi
 
-  gcloud compute instances start "" --zone=
+  gcloud compute instances start "$1" --zone=$GCE_DEFAULT_ZONE
 
   # Collapse ssh Host entries back to their expected values.
   sed -i "" "s/Host \(.*\) \1./Host \1./g" ~/.ssh/config
