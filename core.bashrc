@@ -2,7 +2,7 @@
 
 # What type of system are we running on?
 [ -d /etc/mach_init.d ] && MACOSX=1
-[ -f /etc/lsb-release ] && LINUX=1
+[ -f /etc/lsb-release -o -f /etc/debian_version ] && LINUX=1
 
 # If this isn't an interactive shell now is the time to bail.
 [ -z "$PS1" ] && return
