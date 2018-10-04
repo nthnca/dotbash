@@ -1,6 +1,8 @@
 # Takes the name of the VM you want to start
 export GCE_DEFAULT_ZONE=us-west1-c
 
+alias gcels="gcloud compute instances list"
+
 function gcestart() {
   if [ $# -ne 1 ]; then
     echo "Usage: gcestart <vmname>"
