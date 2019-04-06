@@ -1,5 +1,7 @@
 # Make it simple to use multiple chrome profiles.
 # Generate a start*chrome alias for each entry in CHROME_USERS.
+# For example if CHROME_USERS is set to "fred jane" this will create 2 aliases:
+# startfredchrome and startjanechrome that will us 2 different chrome profiles.
 
 __startchrome () {
   # Daemonize the process
