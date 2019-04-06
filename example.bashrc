@@ -7,7 +7,7 @@
 DOTBASH="$HOME/github/dotbash/"
 
 # Nice short name for this computer.
-SHORT_NAME="UNKNOWN"
+SHORT_NAME=`uname -n`
 
 # Multiple Chrome profiles? Add here, creates commands like startprof1chrome.
 CHROME_USERS="prof1 prof2 prof3"
