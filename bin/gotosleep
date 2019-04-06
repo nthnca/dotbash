@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# To install I do something like this:
+# sudo crontab -e
+# */3 * * * * /PATH.../bin/gotosleep && /sbin/shutdown -h now
+
+# shutdown -h now doesn't seem to work reliably inside a script.... ???
+# As a result we rely on the caller to actually call shutdown.
+
+TMP_POSTFIX=oldest
+
+# Always wait for the machine to have been up for at least 1000 seconds
+if test `cut -d . -f 1 /proc/uptime` -lt 300; then
+  logger "Machine hasn't been up long enough."
+  exit 1
+fi
+
+touch -d "$(date --date="-25 minutes")" /tmp/stayawake.${POSTFIX}
+if ! ( find /tmp/stayawake.* -newer /tmp/stayawake.${POSTFIX} | grep . >/dev/null); then
+  echo "Are you still there?" | wall
+fi
+
+# Shutdown if no activity for 30 minutes.
+touch -d "$(date --date="-30 minutes")" /tmp/stayawake.${POSTFIX}
+if ! ( find /tmp/stayawake.* -newer /tmp/stayawake.${POSTFIX} | grep . >/dev/null); then
+  echo "Shutting down" | wall
+  exit 0
+fi
+
+exit 1
