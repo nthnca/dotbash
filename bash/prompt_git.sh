@@ -27,8 +27,7 @@ __git_do() {
 
     alias br="git branch"
     alias co="git checkout"
-    alias ci="git_commit -v -a"
-    alias cia="git_commit_amend -v -a"
+    alias ci="git commit -v -a"
     alias st="git status"
     alias log="git log"
     alias dif="git diff -p"
