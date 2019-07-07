@@ -13,7 +13,6 @@ __stayawake () {
   local time=$(printf "%(%s)T")
   if [ $__stayawake_time -lt $((time-120)) ]; then
     __stayawake_time=$time
-    $DOTBASH/bin/stayawake
     touch /tmp/stayawake.shell."$USER"
   fi
 }
