@@ -1,0 +1,17 @@
+#!/bin/bash
+
+find . -type f | grep -v [.]git | cut -b 3- | grep -v "^$" | grep -v "^tags$" > /tmp/.tags.foo
+
+cat /dev/null > /tmp/.tags
+for x in `cat /tmp/.tags.foo`; do
+  y=$x
+  while true; do
+    n=${y#*/}
+    echo -e $y'\t'$x'\t1' >> /tmp/.tags
+    if [ "$n" == "$y" ]; then
+      break
+    fi
+    y=$n
+  done
+done
+mv /tmp/.tags tags
