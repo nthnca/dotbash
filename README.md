@@ -1,5 +1,7 @@
 # dotbash
 
+DEPRECATED: See [config](https://github.com/nthnca/config)
+
 This repository contains my basic environment setup. It contains a number of
 different configuration tweaks that I have built up over the years. Hopefully
 it is organized in a way that is easy to understand and easy to modify for your
